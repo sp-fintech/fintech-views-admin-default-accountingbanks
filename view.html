@@ -1,0 +1,34 @@
+{% if bank['id'] is defined %}
+    {% set bankId = bank['id'] %}
+    {% set title = 'bank (' ~ bank['name'] ~ ')' %}
+{% else %}
+    {% set bankId = '' %}
+    {% set title = 'New bank' %}
+{% endif %}
+{{adminltetags.useTag('content',
+    [
+        'component'                     : component,
+        'componentName'                 : componentName,
+        'componentId'                   : componentId,
+        'parentComponentId'             : parent,
+        'sectionId'                     : 'main',
+        'contentType'                   : 'sectionWithForm',
+        'cardHeader'                    : true,
+        'cardFooter'                    : true,
+        'cardType'                      : 'primary',
+        'cardIcon'                      : 'bank',
+        'cardTitle'                     : title,
+        'cardAdditionalClass'           : 'rounded-0',
+        'cardBodyInclude'               : 'banks/form',
+        'formButtons'                   :
+        [
+            'updateButtonId'                : bankId,
+            'addActionUrl'                  : 'accounting/banks/add',
+            'addSuccessRedirectUrl'         : 'accounting/banks',
+            'updateActionUrl'               : 'accounting/banks/update',
+            'updateSuccessRedirectUrl'      : 'accounting/banks',
+            'cancelActionUrl'               : 'accounting/banks',
+            'closeActionUrl'                : 'accounting/banks'
+        ]
+    ]
+)}}
